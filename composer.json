@@ -2,6 +2,18 @@
     "name": "keesschepers/billink-api",
     "description": "A PHP library to communicate with the Billink payment API. Billink is a company accepting payment claims",
     "license": "MIT",
+    "keywords": ["Billink", "Billink API"],
+    "authors": [
+        {
+            "name": "Kees Schepers",
+            "email": "kees@keesschepers.nl"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "ext-xml": "*",
+        "guzzle/guzzle": "~3.7"
+    },
     "autoload": {
         "psr-4" : {
             "Keesschepers\\Billink\\" : ["src/"]
