@@ -1,0 +1,10 @@
+{
+    "name": "keesschepers/billink-api",
+    "description": "A PHP library to communicate with the Billink payment API. Billink is a company accepting payment claims",
+    "license": "MIT",
+    "autoload": {
+        "psr-4" : {
+            "Keesschepers\\Billink\\" : ["src/"]
+        }
+    }
+}
