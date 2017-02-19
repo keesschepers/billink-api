@@ -2,6 +2,8 @@
 
 namespace Keesschepers\Billink\Request;
 
+use SimpleXMLElement;
+
 class CheckRequest
 {
     private $username;

@@ -5,6 +5,7 @@ namespace Keesschepers\Billink;
 use GuzzleHttp;
 use Keesschepers\Billink\Response\CheckResponse;
 use Keesschepers\Billink\Request\CheckRequest;
+use RuntimeException;
 use SimpleXMLElement;
 
 class Api
@@ -36,6 +37,12 @@ class Api
             ]
         );
 
-        return new CheckResponse($response->getBody()->getContents());
+        $response = new CheckResponse($response->getBody()->getContents());
+
+        if ($response->isError() && in_array($response->getErrorCode(), ['001', '101', '102', '103', '601'])) {
+            throw new RuntimeException($response->getErrorDescription(), $response->getErrorCode());
+        }
+
+        return $response;
     }
 }
