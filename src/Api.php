@@ -3,10 +3,10 @@
 namespace Keesschepers\Billink;
 
 use GuzzleHttp;
+use Keesschepers\Billink\Request\OrderRequest;
 use Keesschepers\Billink\Response\CheckResponse;
 use Keesschepers\Billink\Request\CheckRequest;
 use RuntimeException;
-use SimpleXMLElement;
 
 class Api
 {
@@ -44,5 +44,31 @@ class Api
         }
 
         return $response;
+    }
+
+    /**
+     * Add a claim to Billink.
+     *
+     * @param \Keesschepers\Billink\Request\OrderRequest $request
+     *
+     * @return \Keesschepers\Billink\Response\OrderResponse
+     */
+    public function order(OrderRequest $request)
+    {
+        $request->setUsername($this->username);
+        $request->setToken($this->token);
+
+        $client = new GuzzleHttp\Client(['base_uri' => $this->endpoint]);
+        $response = $client->post(
+            '/api/order',
+            [
+                'body' => $request->asXml(),
+                'header' => [
+                    'content-type' => 'text/xml',
+                ]
+            ]
+        );
+
+        return new OrderResponse($response->getBody()->getContents());
     }
 }

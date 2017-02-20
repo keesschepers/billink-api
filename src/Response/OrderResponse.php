@@ -4,28 +4,23 @@ namespace Keesschepers\Billink\Response;
 
 use SimpleXMLElement;
 
-class CheckResponse
+class OrderResponse
 {
     private $description;
     private $code;
     private $errorCode;
     private $errorDescription;
-    private $checkUuId;
 
     public function __construct($xml)
     {
         $response = new SimpleXMLElement($xml);
 
+        $this->code = (string)$response->MSG->CODE;
+        $this->description = (string)$response->MSG->DESCRIPTION;
+
         if ($response->ERROR) {
             $this->errorCode = (string)$response->ERROR->CODE;
             $this->errorDescription = (string)$response->ERROR->DESCRIPTION;
-        } else {
-            $this->code = (string)$response->MSG->CODE;
-            $this->description = (string)$response->MSG->DESCRIPTION;
-
-            if ($this->code == '500') {
-                $this->checkUuId = (string)$response->UUID;
-            }
         }
     }
 
@@ -44,13 +39,8 @@ class CheckResponse
         return $this->errorDescription;
     }
 
-    public function isCreditWorthy()
+    public function isAccepted()
     {
-        return ($this->code == 500);
-    }
-
-    public function getCheckUuId()
-    {
-        return $this->checkUuId;
+        return ($this->code == '200');
     }
 }
