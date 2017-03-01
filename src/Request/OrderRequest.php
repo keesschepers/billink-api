@@ -3,6 +3,7 @@
 namespace Keesschepers\Billink\Request;
 
 use DateTime;
+use SimpleXMLElement;
 
 class OrderRequest
 {
@@ -13,54 +14,6 @@ class OrderRequest
     private $chamberOfCommerce;
     private $workflowNumber;
     private $orderNumber;
-
-    /**
-     * @param mixed $orderNumber
-     */
-    public function setOrderNumber($orderNumber)
-    {
-        $this->orderNumber = $orderNumber;
-    }
-
-    /**
-     * @param mixed $date
-     */
-    public function setDate(DateTime $date)
-    {
-        $this->date = $date;
-    }
-
-    /**
-     * @param mixed $street
-     */
-    public function setStreet($street)
-    {
-        $this->street = $street;
-    }
-
-    /**
-     * @param mixed $countryCode
-     */
-    public function setCountryCode($countryCode)
-    {
-        $this->countryCode = $countryCode;
-    }
-
-    /**
-     * @param mixed $city
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    }
-
-    /**
-     * @param mixed $items
-     */
-    public function setItems($items)
-    {
-        $this->items = $items;
-    }
     private $date;
     private $firstName;
     private $initials;
@@ -74,6 +27,57 @@ class OrderRequest
     private $phoneNumber;
     private $email;
     private $checkuuid;
+    private $items;
+
+    /**
+     * @param mixed $orderNumber
+     */
+    public function setOrderNumber($orderNumber)
+    {
+        $this->orderNumber = $orderNumber;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $date
+     */
+    public function setDate(DateTime $date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $street
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $countryCode
+     */
+    public function setCountryCode($countryCode)
+    {
+        $this->countryCode = $countryCode;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
 
     /**
      * @param mixed $checkuuid
@@ -82,9 +86,9 @@ class OrderRequest
     public function setCheckuuid($checkuuid)
     {
         $this->checkuuid = $checkuuid;
+
         return $this;
     }
-    private $items;
 
     /**
      * @param \Keesschepers\Billink\Request\OrderRequestItem $item
@@ -282,7 +286,7 @@ class OrderRequest
         $document->addChild('FIRSTNAME', $this->firstName);
         $document->addChild('INITIALS', $this->initials);
         $document->addChild('LASTNAME', $this->lastName);
-        $document->addChild('street', $this->street);
+        $document->addChild('STREET', $this->street);
         $document->addChild('HOUSENUMBER', $this->houseNumber);
         $document->addChild('HOUSEEXTENSION', $this->houseNumberExtension);
         $document->addChild('POSTALCODE', $this->postalCode);
@@ -292,8 +296,10 @@ class OrderRequest
         $document->addChild('EMAIL', $this->email);
         $document->addChild('CHECKUUID', $this->checkuuid);
 
+        $items = $document->addChild('ORDERITEMS');
+
         foreach ($this->items as $item) {
-            $newItem = $document->addChild('ITEM');
+            $newItem = $items->addChild('ITEM');
 
             $newItem->addChild('DESCRIPTION', $item->getDescription());
             $newItem->addChild('ORDERQUANTITY', $item->getOrderQuantity());
