@@ -24,6 +24,16 @@ class OrderRequest
     private $postalCode;
     private $countryCode;
     private $city;
+    private $deliveryStreet;
+    private $deliveryHouseNumber;
+    private $deliveryHouseNumberExtension;
+    private $deliveryPostalCode;
+    private $deliveryCountryCode;
+    private $deliveryCity;
+    private $deliveryAddressCompanyName;
+    private $deliveryAddressFirstName;
+    private $deliveryAddressLastName;
+    private $ip;
     private $phoneNumber;
     private $email;
     private $checkuuid;
