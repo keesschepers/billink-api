@@ -50,6 +50,116 @@ class OrderRequest
     }
 
     /**
+     * @param mixed $deliveryStreet
+     * @return OrderRequest
+     */
+    public function setDeliveryStreet($deliveryStreet)
+    {
+        $this->deliveryStreet = $deliveryStreet;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $deliveryHouseNumber
+     * @return OrderRequest
+     */
+    public function setDeliveryHouseNumber($deliveryHouseNumber)
+    {
+        $this->deliveryHouseNumber = $deliveryHouseNumber;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $deliveryHouseNumberExtension
+     * @return OrderRequest
+     */
+    public function setDeliveryHouseNumberExtension($deliveryHouseNumberExtension)
+    {
+        $this->deliveryHouseNumberExtension = $deliveryHouseNumberExtension;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $deliveryPostalCode
+     * @return OrderRequest
+     */
+    public function setDeliveryPostalCode($deliveryPostalCode)
+    {
+        $this->deliveryPostalCode = $deliveryPostalCode;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $deliveryCountryCode
+     * @return OrderRequest
+     */
+    public function setDeliveryCountryCode($deliveryCountryCode)
+    {
+        $this->deliveryCountryCode = $deliveryCountryCode;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $deliveryCity
+     * @return OrderRequest
+     */
+    public function setDeliveryCity($deliveryCity)
+    {
+        $this->deliveryCity = $deliveryCity;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $deliveryAddressCompanyName
+     * @return OrderRequest
+     */
+    public function setDeliveryAddressCompanyName($deliveryAddressCompanyName)
+    {
+        $this->deliveryAddressCompanyName = $deliveryAddressCompanyName;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $deliveryAddressFirstName
+     * @return OrderRequest
+     */
+    public function setDeliveryAddressFirstName($deliveryAddressFirstName)
+    {
+        $this->deliveryAddressFirstName = $deliveryAddressFirstName;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $deliveryAddressLastName
+     * @return OrderRequest
+     */
+    public function setDeliveryAddressLastName($deliveryAddressLastName)
+    {
+        $this->deliveryAddressLastName = $deliveryAddressLastName;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $ip
+     * @return OrderRequest
+     */
+    public function setIp($ip)
+    {
+        $this->ip = $ip;
+
+        return $this;
+    }
+
+    /**
      * @param mixed $date
      */
     public function setDate(DateTime $date)
@@ -302,8 +412,18 @@ class OrderRequest
         $document->addChild('POSTALCODE', $this->postalCode);
         $document->addChild('COUNTRYCODE', $this->countryCode);
         $document->addChild('CITY', $this->city);
+        $document->addChild('DELIVERYSTREET', $this->deliveryStreet);
+        $document->addChild('DELIVERYHOUSENUMBER', $this->deliveryHouseNumber);
+        $document->addChild('DELIVERYHOUSEEXTENSION', $this->deliveryHouseNumberExtension);
+        $document->addChild('DELIVERYPOSTALCODE', $this->deliveryPostalCode);
+        $document->addChild('DELIVERYCOUNTRYCODE', $this->deliveryCountryCode);
+        $document->addChild('DELIVERYCITY', $this->deliveryCity);
+        $document->addChild('DELIVERYADDRESSCOMPANYNAME', $this->deliveryAddressCompanyName);
+        $document->addChild('DELIVERYADDRESSFIRSTNAME', $this->deliveryAddressFirstName);
+        $document->addChild('DELIVERYADDRESSLASTNAME', $this->deliveryAddressLastName);
         $document->addChild('PHONENUMBER', $this->phoneNumber);
         $document->addChild('EMAIL', $this->email);
+        $document->addChild('IP', $this->ip);
         $document->addChild('CHECKUUID', $this->checkuuid);
 
         $items = $document->addChild('ORDERITEMS');
