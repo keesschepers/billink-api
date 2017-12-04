@@ -95,6 +95,14 @@ class CheckRequest
     }
 
     /**
+     * @return integer
+     */
+    public function getWorkflowNumber()
+    {
+        return $this->workflowNumber;
+    }
+
+    /**
      * @param string $firstName
      *
      * @return CheckRequest
