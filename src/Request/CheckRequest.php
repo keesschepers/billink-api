@@ -217,7 +217,7 @@ class CheckRequest
         $document->addChild('CLIENTUSERNAME', $this->username);
         $document->addChild('CLIENTID', $this->token);
         $document->addChild('TYPE', $this->type);
-        $document->addChild('COMPANYNAME', $this->companyName);
+        $document->addChild('COMPANYNAME', htmlspecialchars($this->companyName));
         $document->addChild('CHAMBEROFCOMMERCE', $this->chamberOfCommerce);
         $document->addChild('WORKFLOWNUMBER', $this->workflowNumber);
         $document->addChild('ACTION', 'CHECK');
