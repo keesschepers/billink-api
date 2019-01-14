@@ -36,6 +36,7 @@ class OrderRequest
     private $ip;
     private $phoneNumber;
     private $email;
+    private $secondEmail;
     private $checkuuid;
     private $items;
 
@@ -390,6 +391,18 @@ class OrderRequest
         return $this;
     }
 
+    /**
+     * @param string $email
+     *
+     * @return CheckRequest
+     */
+    public function setSecondEmail($email)
+    {
+        $this->secondEmail = $email;
+
+        return $this;
+    }
+
     public function asXml()
     {
         $document = new SimpleXMLElement('<API></API>');
@@ -425,6 +438,10 @@ class OrderRequest
         $document->addChild('EMAIL', $this->email);
         $document->addChild('IP', $this->ip);
         $document->addChild('CHECKUUID', $this->checkuuid);
+
+        if (null !== $this->secondEmail) {
+            $document->addChild('EMAIL2', $this->secondEmail);
+        }
 
         $items = $document->addChild('ORDERITEMS');
 
