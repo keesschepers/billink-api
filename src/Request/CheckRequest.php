@@ -181,7 +181,7 @@ class CheckRequest
 
     /**
      * @param DateTime $birthDate
-     * @return OrderRequest
+     * @return CheckRequest
      */
     public function setBirthDate(DateTime $birthDate)
     {

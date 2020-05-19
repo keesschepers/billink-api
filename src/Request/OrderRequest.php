@@ -18,6 +18,9 @@ class OrderRequest
     private $firstName;
     private $initials;
     private $lastName;
+
+    /** @var string */
+    private $sex;
     private $street;
     private $houseNumber;
     private $houseNumberExtension;
@@ -36,9 +39,7 @@ class OrderRequest
     private $ip;
     private $phoneNumber;
 
-    /**
-     * @var DateTime
-     */
+    /** @var DateTime */
     private $birthDate;
     private $email;
     private $secondEmail;
@@ -321,6 +322,17 @@ class OrderRequest
     }
 
     /**
+     * @param string $sex
+     * @return OrderRequest
+     */
+    public function setSex($sex)
+    {
+        $this->sex = $sex;
+
+        return $this;
+    }
+
+    /**
      * @param string $initials
      * @return OrderRequest
      */
@@ -424,6 +436,7 @@ class OrderRequest
         $document->addChild('FIRSTNAME', $this->firstName);
         $document->addChild('INITIALS', $this->initials);
         $document->addChild('LASTNAME', $this->lastName);
+        $document->addChild('SEX', $this->sex);
         $document->addChild('STREET', $this->street);
         $document->addChild('HOUSENUMBER', $this->houseNumber);
         $document->addChild('HOUSEEXTENSION', $this->houseNumberExtension);
@@ -451,13 +464,16 @@ class OrderRequest
 
         $items = $document->addChild('ORDERITEMS');
 
+        /** @var OrderRequestItem $item */
         foreach ($this->items as $item) {
             $newItem = $items->addChild('ITEM');
 
             $newItem->addChild('DESCRIPTION', $item->getDescription());
             $newItem->addChild('ORDERQUANTITY', $item->getOrderQuantity());
 
-            if ($this->type == 'B') {
+            if ($this->type == 'P') {
+                $newItem->addChild('PRICEINCL', $item->getPriceIncl());
+            } else {
                 $newItem->addChild('PRICEEXCL', $item->getPriceExcl());
             }
 
