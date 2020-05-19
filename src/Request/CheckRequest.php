@@ -2,6 +2,7 @@
 
 namespace Keesschepers\Billink\Request;
 
+use DateTime;
 use SimpleXMLElement;
 
 class CheckRequest
@@ -19,12 +20,16 @@ class CheckRequest
     private $houseNumberExtension;
     private $postalCode;
     private $phoneNumber;
+
+    /**
+     * @var DateTime
+     */
+    private $birthDate;
     private $email;
     private $orderAmount;
 
     /**
      * @param string $username
-     *
      * @return CheckRequest
      */
     public function setUsername($username)
@@ -36,7 +41,6 @@ class CheckRequest
 
     /**
      * @param string $token
-     *
      * @return CheckRequest
      */
     public function setToken($token)
@@ -48,7 +52,6 @@ class CheckRequest
 
     /**
      * @param string $type
-     *
      * @return CheckRequest
      */
     public function setType($type)
@@ -60,7 +63,6 @@ class CheckRequest
 
     /**
      * @param string $companyName
-     *
      * @return CheckRequest
      */
     public function setCompanyName($companyName)
@@ -72,7 +74,6 @@ class CheckRequest
 
     /**
      * @param string $chamberOfCommerce
-     *
      * @return CheckRequest
      */
     public function setChamberOfCommerce($chamberOfCommerce)
@@ -84,7 +85,6 @@ class CheckRequest
 
     /**
      * @param integer $workflowNumber
-     *
      * @return CheckRequest
      */
     public function setWorkflowNumber($workflowNumber)
@@ -104,7 +104,6 @@ class CheckRequest
 
     /**
      * @param string $firstName
-     *
      * @return CheckRequest
      */
     public function setFirstName($firstName)
@@ -116,7 +115,6 @@ class CheckRequest
 
     /**
      * @param string $lastName
-     *
      * @return CheckRequest
      */
     public function setLastName($lastName)
@@ -128,7 +126,6 @@ class CheckRequest
 
     /**
      * @param string $initials
-     *
      * @return CheckRequest
      */
     public function setInitials($initials)
@@ -140,7 +137,6 @@ class CheckRequest
 
     /**
      * @param string $houseNumber
-     *
      * @return CheckRequest
      */
     public function setHouseNumber($houseNumber)
@@ -152,7 +148,6 @@ class CheckRequest
 
     /**
      * @param string $houseNumberExtension
-     *
      * @return CheckRequest
      */
     public function setHouseNumberExtension($houseNumberExtension)
@@ -164,7 +159,6 @@ class CheckRequest
 
     /**
      * @param string $postalCode
-     *
      * @return CheckRequest
      */
     public function setPostalCode($postalCode)
@@ -176,7 +170,6 @@ class CheckRequest
 
     /**
      * @param string $phoneNumber
-     *
      * @return CheckRequest
      */
     public function setPhoneNumber($phoneNumber)
@@ -187,8 +180,18 @@ class CheckRequest
     }
 
     /**
+     * @param DateTime $birthDate
+     * @return OrderRequest
+     */
+    public function setBirthDate(DateTime $birthDate)
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
      * @param string $email
-     *
      * @return CheckRequest
      */
     public function setEmail($email)
@@ -200,7 +203,6 @@ class CheckRequest
 
     /**
      * @param float $orderAmount
-     *
      * @return CheckRequest
      */
     public function setOrderAmount($orderAmount)
@@ -228,6 +230,7 @@ class CheckRequest
         $document->addChild('HOUSEEXTENSION', $this->houseNumberExtension);
         $document->addChild('POSTALCODE', $this->postalCode);
         $document->addChild('PHONENUMBER', $this->phoneNumber);
+        $document->addChild('BIRTHDATE', $this->birthDate->format('d-m-Y'));
         $document->addChild('EMAIL', $this->email);
         $document->addChild('ORDERAMOUNT', number_format($this->orderAmount, 2, '.', ','));
 

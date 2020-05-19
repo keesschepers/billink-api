@@ -12,6 +12,7 @@
     "require": {
         "php": ">=5.4",
         "ext-xml": "*",
+        "ext-simplexml": "*",
         "guzzlehttp/guzzle": ">=3.7"
     },
     "autoload": {
