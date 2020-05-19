@@ -35,13 +35,19 @@ class OrderRequest
     private $deliveryAddressLastName;
     private $ip;
     private $phoneNumber;
+
+    /**
+     * @var DateTime
+     */
+    private $birthDate;
     private $email;
     private $secondEmail;
     private $checkuuid;
     private $items;
 
     /**
-     * @param mixed $orderNumber
+     * @param string $orderNumber
+     * @return OrderRequest
      */
     public function setOrderNumber($orderNumber)
     {
@@ -51,7 +57,7 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $deliveryStreet
+     * @param string $deliveryStreet
      * @return OrderRequest
      */
     public function setDeliveryStreet($deliveryStreet)
@@ -62,7 +68,7 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $deliveryHouseNumber
+     * @param string $deliveryHouseNumber
      * @return OrderRequest
      */
     public function setDeliveryHouseNumber($deliveryHouseNumber)
@@ -73,7 +79,7 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $deliveryHouseNumberExtension
+     * @param string $deliveryHouseNumberExtension
      * @return OrderRequest
      */
     public function setDeliveryHouseNumberExtension($deliveryHouseNumberExtension)
@@ -84,7 +90,7 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $deliveryPostalCode
+     * @param string $deliveryPostalCode
      * @return OrderRequest
      */
     public function setDeliveryPostalCode($deliveryPostalCode)
@@ -95,7 +101,7 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $deliveryCountryCode
+     * @param string $deliveryCountryCode
      * @return OrderRequest
      */
     public function setDeliveryCountryCode($deliveryCountryCode)
@@ -106,7 +112,7 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $deliveryCity
+     * @param string $deliveryCity
      * @return OrderRequest
      */
     public function setDeliveryCity($deliveryCity)
@@ -117,7 +123,7 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $deliveryAddressCompanyName
+     * @param string $deliveryAddressCompanyName
      * @return OrderRequest
      */
     public function setDeliveryAddressCompanyName($deliveryAddressCompanyName)
@@ -128,7 +134,7 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $deliveryAddressFirstName
+     * @param string $deliveryAddressFirstName
      * @return OrderRequest
      */
     public function setDeliveryAddressFirstName($deliveryAddressFirstName)
@@ -139,7 +145,7 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $deliveryAddressLastName
+     * @param string $deliveryAddressLastName
      * @return OrderRequest
      */
     public function setDeliveryAddressLastName($deliveryAddressLastName)
@@ -150,7 +156,7 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $ip
+     * @param string $ip
      * @return OrderRequest
      */
     public function setIp($ip)
@@ -161,7 +167,8 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $date
+     * @param DateTime $date
+     * @return OrderRequest
      */
     public function setDate(DateTime $date)
     {
@@ -171,7 +178,8 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $street
+     * @param string $street
+     * @return OrderRequest
      */
     public function setStreet($street)
     {
@@ -181,7 +189,8 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $countryCode
+     * @param string $countryCode
+     * @return OrderRequest
      */
     public function setCountryCode($countryCode)
     {
@@ -191,7 +200,8 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $city
+     * @param string $city
+     * @return OrderRequest
      */
     public function setCity($city)
     {
@@ -201,7 +211,7 @@ class OrderRequest
     }
 
     /**
-     * @param mixed $checkuuid
+     * @param string $checkuuid
      * @return OrderRequest
      */
     public function setCheckuuid($checkuuid)
@@ -213,8 +223,7 @@ class OrderRequest
 
     /**
      * @param \Keesschepers\Billink\Request\OrderRequestItem $item
-     *
-     * @return $this
+     * @return OrderRequest
      */
     public function addItem(OrderRequestItem $item)
     {
@@ -225,8 +234,7 @@ class OrderRequest
 
     /**
      * @param string $username
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setUsername($username)
     {
@@ -237,8 +245,7 @@ class OrderRequest
 
     /**
      * @param string $token
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setToken($token)
     {
@@ -249,8 +256,7 @@ class OrderRequest
 
     /**
      * @param string $type
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setType($type)
     {
@@ -261,8 +267,7 @@ class OrderRequest
 
     /**
      * @param string $companyName
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setCompanyName($companyName)
     {
@@ -273,8 +278,7 @@ class OrderRequest
 
     /**
      * @param string $chamberOfCommerce
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setChamberOfCommerce($chamberOfCommerce)
     {
@@ -285,8 +289,7 @@ class OrderRequest
 
     /**
      * @param integer $workflowNumber
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setWorkflowNumber($workflowNumber)
     {
@@ -297,8 +300,7 @@ class OrderRequest
 
     /**
      * @param string $firstName
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setFirstName($firstName)
     {
@@ -309,8 +311,7 @@ class OrderRequest
 
     /**
      * @param string $lastName
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setLastName($lastName)
     {
@@ -321,8 +322,7 @@ class OrderRequest
 
     /**
      * @param string $initials
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setInitials($initials)
     {
@@ -333,8 +333,7 @@ class OrderRequest
 
     /**
      * @param string $houseNumber
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setHouseNumber($houseNumber)
     {
@@ -345,8 +344,7 @@ class OrderRequest
 
     /**
      * @param string $houseNumberExtension
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setHouseNumberExtension($houseNumberExtension)
     {
@@ -357,8 +355,7 @@ class OrderRequest
 
     /**
      * @param string $postalCode
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setPostalCode($postalCode)
     {
@@ -369,8 +366,7 @@ class OrderRequest
 
     /**
      * @param string $phoneNumber
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setPhoneNumber($phoneNumber)
     {
@@ -380,9 +376,19 @@ class OrderRequest
     }
 
     /**
+     * @param DateTime $birthDate
+     * @return OrderRequest
+     */
+    public function setBirthDate(DateTime $birthDate)
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
      * @param string $email
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setEmail($email)
     {
@@ -393,8 +399,7 @@ class OrderRequest
 
     /**
      * @param string $email
-     *
-     * @return CheckRequest
+     * @return OrderRequest
      */
     public function setSecondEmail($email)
     {
@@ -435,6 +440,7 @@ class OrderRequest
         $document->addChild('DELIVERYADDRESSFIRSTNAME', $this->deliveryAddressFirstName);
         $document->addChild('DELIVERYADDRESSLASTNAME', $this->deliveryAddressLastName);
         $document->addChild('PHONENUMBER', $this->phoneNumber);
+        $document->addChild('BIRTHDATE', $this->birthDate->format('d-m-Y'));
         $document->addChild('EMAIL', $this->email);
         $document->addChild('IP', $this->ip);
         $document->addChild('CHECKUUID', $this->checkuuid);
