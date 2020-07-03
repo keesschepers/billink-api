@@ -38,6 +38,7 @@ class OrderRequest
     private $deliveryAddressLastName;
     private $ip;
     private $phoneNumber;
+    private $aditionalText;
 
     /** @var DateTime */
     private $birthDate;
@@ -420,6 +421,13 @@ class OrderRequest
         return $this;
     }
 
+    public function setAditionalText($text)
+    {
+        $this->aditionalText = $text;
+
+        return $this;
+    }
+
     public function asXml()
     {
         $document = new SimpleXMLElement('<API></API>');
@@ -460,6 +468,10 @@ class OrderRequest
 
         if (null !== $this->secondEmail) {
             $document->addChild('EMAIL2', $this->secondEmail);
+        }
+
+        if (null !== $this->aditionalText) {
+            $document->addChild('ADITIONALTEXT', $this->aditionalText);
         }
 
         $items = $document->addChild('ORDERITEMS');
