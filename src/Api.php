@@ -56,7 +56,7 @@ class Api
 
         $response = new CheckResponse($response->getBody()->getContents());
 
-        if ($response->isError() && in_array($response->getErrorCode(), ['001', '101', '102', '103', '601'])) {
+        if ($response->isError() && ($response->getErrorCode() && in_array($response->getErrorCode(), ['001', '101', '102', '103', '601']))) {
             throw new RuntimeException($response->getErrorDescription(), $response->getErrorCode());
         }
 
