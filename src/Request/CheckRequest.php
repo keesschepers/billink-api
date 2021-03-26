@@ -20,6 +20,7 @@ class CheckRequest
     private $houseNumberExtension;
     private $postalCode;
     private $phoneNumber;
+    private $ip;
 
     /**
      * @var DateTime
@@ -212,6 +213,13 @@ class CheckRequest
         return $this;
     }
 
+    public function setIp($ipAddress)
+    {
+        $this->ip = $ipAddress;
+
+        return $this;
+    }
+
     public function asXml()
     {
         $document = new SimpleXMLElement('<API></API>');
@@ -233,6 +241,7 @@ class CheckRequest
         $document->addChild('BIRTHDATE', $this->birthDate->format('d-m-Y'));
         $document->addChild('EMAIL', $this->email);
         $document->addChild('ORDERAMOUNT', number_format($this->orderAmount, 2, '.', ','));
+        $document->addChild('IP', $this->ip);
 
         return $document->asXml();
     }
